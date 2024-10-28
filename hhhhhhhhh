@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Défi de Programmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            text-align: center;
+            margin: 50px;
+        }
+        .question, .result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #e3f2fd;
+            color: #0d47a1;
+        }
+        .visible {
+            display: block;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #0d47a1;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Défi de Programmation – Jeu d'Énigmes</h1>
+    <p>Résous chaque énigme pour découvrir ta mission secrète !</p>
+
+    <div id="question1" class="question visible">
+        <p><strong>Question 1 :</strong> Je commence par un “p” et j’aide à organiser les semaines. Qui suis-je ?</p>
+        <button onclick="checkAnswer(1, 'Planification')">Planification</button>
+        <button onclick="checkAnswer(1, 'Précipitation')">Précipitation</button>
+        <button onclick="checkAnswer(1, 'Pragmatique')">Pragmatique</button>
+    </div>
+
+    <div id="question2" class="question">
+        <p><strong>Question 2 :</strong> Je commence par “s” et aide à organiser les jours du mois. Qui suis-je ?</p>
+        <button onclick="checkAnswer(2, 'Semaine')">Semaine</button>
+        <button onclick="checkAnswer(2, 'Solstice')">Solstice</button>
+        <button onclick="checkAnswer(2, 'Sommeil')">Sommeil</button>
+    </div>
+
+    <div id="successMessage" class="result">
+        <h2>Félicitations ! 🎉</h2>
+        <p>Tu as résolu toutes les énigmes ! Ta mission est de programmer la semaine 47 pour le BSC3 sur IS-Academia.</p>
+    </div>
+
+    <div id="failureMessage" class="result">
+        <h2>Mauvaise réponse 😔</h2>
+        <p>Essaie encore depuis le début !</p>
+        <button onclick="resetGame()">Réessayer</button>
+    </div>
+
+    <script>
+        function checkAnswer(questionNumber, answer) {
+            if (questionNumber === 1 && answer === 'Planification') {
+                document.getElementById('question1').classList.remove('visible');
+                document.getElementById('question2').classList.add('visible');
+            } else if (questionNumber === 2 && answer === 'Semaine') {
+                document.getElementById('question2').classList.remove('visible');
+                document.getElementById('successMessage').classList.add('visible');
+            } else {
+                document.querySelectorAll('.question').forEach(q => q.classList.remove('visible'));
+                document.getElementById('failureMessage').classList.add('visible');
+            }
+        }
+
+        function resetGame() {
+            document.querySelectorAll('.question, .result').forEach(el => el.classList.remove('visible'));
+            document.getElementById('question1').classList.add('visible');
+        }
+    </script>
+</body>
+</html>
